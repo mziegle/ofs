@@ -1,0 +1,45 @@
+----- README Project 2 Device Driver -----
+
+The device driver has been developed and tested on:
+
+Linux version 4.10.2-1-ARCH (builduser@andyrtr) (gcc version 6.3.1 20170306 (GCC) ) #1 SMP PREEMPT Mon Mar 13 17:13:41 CET 2017
+
+
+----- HOW TO COMPILE THE DEVICE DRIVER ----- 
+
+Compile the sources.
+$ make
+
+Insmod the device driver. Old driver will me removed. Creates a new device using the dynamic major device number.
+$ make device
+
+Remove all generated files.
+$ make clean
+
+
+----- HOW TO COMMUNICATE WITH THE DEVICE DRIVER ----- 
+
+NAME
+ioctl
+
+USAGE
+$ ./ioctl -p <pid> [request size]
+$ ./ioctl -u <uid user> [request size]
+$ ./ioctl -o <uid owner> [request size]
+$ ./ioctl -n <filename> [request size]
+$ ./ioctl more <request size>
+
+DESCRIPTION
+The program ioctl can be used to pass open file search querys to the ofs device. The following querys are possible. 
+
+-p: find all a process's open() files
+
+-u: find all the files a user has open
+
+-o: find all open() files that are owned by a user
+
+-n: find all files with a given name
+
+The program writes the search results to standard out. The default request size ist 5 ofs results. You can specify the request size by the optional parameter [request size]. If you want to see more results from the last query, you can use
+
+more [request size]
